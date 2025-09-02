@@ -533,11 +533,18 @@ export default function App() {
                 repoLink: "",
             },
           {
-                title: "My Portfolio",
+                title: "My Portfolio - Deepak's Profile",
                 description: "A React-based app to my profile and skills. Used Bootstrap for responsive UI and dynamic user experience.",
                 tech: ["React", "Bootstrap", "Node.js", "Express"],
                 liveLink: "https://deepakprofile.vercel.app/",
                 repoLink: "https://github.com/DeepakSharma301203/deepakprofile",
+            },
+          {
+                title: "Scholora - School Website",
+                description: "A React-based app to view School details and get information. Used Bootstrap for responsive UI and dynamic user experience. Features include apply now, login, student dashboard, and teacher dashboard.",
+                tech: ["React", "Bootstrap", "Node.js", "Express","MongoDB"],
+                liveLink: "#",
+                repoLink: "#",
             }
         ],
         experience: [
