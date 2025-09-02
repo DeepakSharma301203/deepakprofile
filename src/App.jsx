@@ -551,7 +551,7 @@ export default function App() {
           {
                 role: "Data Science Intern",
                 company: "Personifwy",
-                duration: "Oct 2023 - Dec 2023",
+                duration: "Oct 2024 - Dec 2024",
                 points: [
                     "Analyzed user behavior data to identify trends and optimize web page performance, leading to a 30% improvement in UI consistency.",
                     "Developed and integrated interactive, data-driven components using React.js to enhance user engagement and system performance.",
