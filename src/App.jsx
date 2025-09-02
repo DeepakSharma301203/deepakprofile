@@ -520,7 +520,7 @@ export default function App() {
         projects: [
             {
                 title: "VamiTrends - E-commerce Platform",
-                description: "Built and deployed a full-stack e-commerce platform using MERN stack, integrating product catalogue, cart, and order management. Implemented secure authentication, payment integration, and responsive UI.",
+                description: "Cuurently working on it!! Building a full-stack e-commerce platform using MERN stack, integrating product catalogue, cart, and order management. Implemented secure authentication, payment integration, and responsive UI.",
                 tech: ["React", "Node.js", "Express", "MongoDB", "JWT"],
                 liveLink: "#",
                 repoLink: "#",
@@ -529,15 +529,32 @@ export default function App() {
                 title: "Wanderlust - Hotel Booking Website",
                 description: "A React-based app to browse and book hotels. Used Bootstrap for responsive UI and dynamic user experience. Features include property listings, search, and booking management.",
                 tech: ["React", "Bootstrap", "Node.js", "Express"],
-                liveLink: "#",
-                repoLink: "#",
+                liveLink: "https://majorproject-4dcn.onrender.com/",
+                repoLink: "",
+            },
+          {
+                title: "My Portfolio",
+                description: "A React-based app to my profile and skills. Used Bootstrap for responsive UI and dynamic user experience.",
+                tech: ["React", "Bootstrap", "Node.js", "Express"],
+                liveLink: "https://deepakprofile.vercel.app/",
+                repoLink: "https://github.com/DeepakSharma301203/deepakprofile",
             }
         ],
         experience: [
+          {
+                role: "Data Science Intern",
+                company: "Personifwy",
+                duration: "Oct 2023 - Dec 2023",
+                points: [
+                    "Analyzed user behavior data to identify trends and optimize web page performance, leading to a 30% improvement in UI consistency.",
+                    "Developed and integrated interactive, data-driven components using React.js to enhance user engagement and system performance.",
+                    "Collaborated with the development team to implement real-time features and debug production-level issues."
+                ]
+            },
             {
                 role: "Web Developer Intern",
                 company: "Stucare Technologies Pvt. Ltd.",
-                duration: "Jul 2023 - Aug 2023 (Remote)",
+                duration: "May 2024 - July 2024",
                 points: [
                     "Developed fully responsive web pages using HTML, CSS, and JavaScript, improving UI consistency by 30%.",
                     "Built interactive components using React.js to enhance user engagement and performance.",
@@ -550,7 +567,7 @@ export default function App() {
                 degree: "Bachelor of Engineering in Computer Science",
                 institution: "Chandigarh University",
                 duration: "Aug 2022 - Present",
-                score: "CGPA: 7.2 (Till 5th Semester)"
+                score: "CGPA: 7.2 (Till 6th Semester)"
             },
         ],
         certifications: [
