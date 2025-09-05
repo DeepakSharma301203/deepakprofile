@@ -91,7 +91,7 @@ export default function App() {
                 repoLink: "https://github.com/DeepakSharma301203/deepakprofile",
             },
           {
-                title: "Vidya Mandir School- School Website",
+                title: "Vidya Mandir School Website",
                 description: "A React-based app to view School details and get information. Used Bootstrap for responsive UI and dynamic user experience. Features include apply now, login, student dashboard, and teacher dashboard.",
                 tech: ["React", "Bootstrap", "Node.js", "Express","MongoDB"],
                 liveLink: "#",
