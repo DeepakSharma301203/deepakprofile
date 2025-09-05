@@ -144,28 +144,32 @@ export default function App() {
                     <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="nav-logo">
                         {portfolioData.name}
                     </a>
-                    <div className={`nav-menu ${isMenuOpen ? 'show-menu' : ''}`}>
-                        <ul className="nav-list">
-                            {navItems.map(item => (
-                                <li key={item} className="nav-item">
-                                    <a 
-                                      href={`#${item}`} 
-                                      onClick={(e) => handleNavClick(e, item)} 
-                                      className={`nav-link capitalize ${activeNav === `#${item}` ? 'active-link' : ''}`}
-                                    >
-                                      {item === 'home' ? 'Home' : item}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="nav-actions">
-                        <button onClick={() => setIsDarkMode(!isDarkMode)} className="theme-button">
-                            {isDarkMode ? <Sun /> : <Moon />}
-                        </button>
-                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="nav-toggle">
-                            {isMenuOpen ? <X /> : <Menu />}
-                        </button>
+
+                    {/* This wrapper div fixes the alignment issue */}
+                    <div className="nav-right">
+                        <div className={`nav-menu ${isMenuOpen ? 'show-menu' : ''}`}>
+                            <ul className="nav-list">
+                                {navItems.map(item => (
+                                    <li key={item} className="nav-item">
+                                        <a 
+                                          href={`#${item}`} 
+                                          onClick={(e) => handleNavClick(e, item)} 
+                                          className={`nav-link capitalize ${activeNav === `#${item}` ? 'active-link' : ''}`}
+                                        >
+                                          {item === 'home' ? 'Home' : item}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="nav-actions">
+                            <button onClick={() => setIsDarkMode(!isDarkMode)} className="theme-button">
+                                {isDarkMode ? <Sun /> : <Moon />}
+                            </button>
+                            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="nav-toggle">
+                                {isMenuOpen ? <X /> : <Menu />}
+                            </button>
+                        </div>
                     </div>
                 </nav>
             </header>
