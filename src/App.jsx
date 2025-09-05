@@ -1,481 +1,283 @@
-/* ===== Google Fonts ===== */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+import React, { useState, useEffect } from 'react';
+import { Github, Linkedin, Mail, Code, Server, Database, GitMerge, Send, Menu, X, Sun, Moon, Briefcase, GraduationCap, Award, ExternalLink } from 'lucide-react';
+import p from "./assets/pp.jpg"; // User's local profile photo import
+import './App.css'; // Import the new CSS file
 
-/* ===== CSS Variables ===== */
-:root {
-  --header-height: 3.5rem;
+// Main App Component
+export default function App() {
+    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [activeNav, setActiveNav] = useState('#home');
+
+    // Effect for dark mode
+    useEffect(() => {
+        document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
+    }, [isDarkMode]);
+    
+    // Effect for header shadow on scroll
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Effect for active nav link on scroll
+    useEffect(() => {
+      const sections = document.querySelectorAll('section[id]');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveNav(`#${entry.target.id}`);
+          }
+        });
+      }, { rootMargin: '-50% 0px -50% 0px' });
   
-  /* Colors - Professional Blue Theme */
-  --hue: 207;
-  --first-color: hsl(var(--hue), 69%, 61%);
-  --first-color-alt: hsl(var(--hue), 69%, 57%);
-  --title-color: hsl(var(--hue), 8%, 15%);
-  --text-color: hsl(var(--hue), 8%, 45%);
-  --text-color-light: hsl(var(--hue), 8%, 65%);
-  --body-color: hsl(var(--hue), 60%, 99%);
-  --container-color: #FFF;
-  --border-color: hsl(var(--hue), 8%, 88%);
+      sections.forEach(section => observer.observe(section));
+  
+      return () => sections.forEach(section => observer.unobserve(section));
+    }, []);
 
-  /* Font */
-  --body-font: 'Poppins', sans-serif;
-  --biggest-font-size: 2.25rem;
-  --h1-font-size: 1.75rem;
-  --h2-font-size: 1.25rem;
-  --h3-font-size: 1rem;
-  --normal-font-size: .938rem;
-  --small-font-size: .813rem;
-  --line-height: 1.6;
+    // Function for smooth scroll and closing mobile menu
+    const handleNavClick = (e, targetId) => {
+        e.preventDefault();
+        document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        setIsMenuOpen(false);
+    };
 
-  /* Font weight */
-  --font-medium: 500;
-  --font-semibold: 600;
-  --font-bold: 700;
+    const portfolioData = {
+        name: "Deepak Sharma",
+        title: "Full Stack Developer | SDE",
+        email: "deepakpandiit045@gmail.com",
+        github: "https://github.com/DeepakSharma301203",
+        linkedin: "https://www.linkedin.com/in/deepak-sharma-ro45/",
+        leetcode: "https://leetcode.com/u/deepaksharma45/",
+        profileImage: p,
+        summary: "Energetic and detail-oriented Computer Science Engineering student with expertise in Full Stack Web Development (MERN), Data Structures and Algorithms (DSA). Seeking a Software Development role where I can apply my technical skills and contribute to high-impact projects.",
+        skills: [
+            { name: "Java", icon: Code },
+            { name: "JavaScript", icon: Code },
+            { name: "React.js", icon: Code },
+            { name: "Node.js", icon: Server },
+            { name: "Express.js", icon: Server },
+            { name: "MongoDB", icon: Database },
+            { name: "MySQL", icon: Database },
+            { name: "HTML5", icon: Code },
+            { name: "CSS3", icon: Code },
+            { name: "Git & GitHub", icon: GitMerge },
+        ],
+        projects: [
+            {
+                title: "VamiTrends - E-commerce Platform",
+                description: "Currently working on it!! Building a full-stack e-commerce platform using MERN stack, integrating product catalogue, cart, and order management. Implemented secure authentication, payment integration, and responsive UI.",
+                tech: ["React", "Node.js", "Express", "MongoDB", "JWT"],
+                liveLink: "#",
+                repoLink: "#",
+            },
+            {
+                title: "Wanderlust - Hotel Booking Website",
+                description: "A React-based app to browse and book hotels. Used Bootstrap for responsive UI and dynamic user experience. Features include property listings, search, and booking management.",
+                tech: ["React", "Bootstrap", "Node.js", "Express"],
+                liveLink: "https://majorproject-4dcn.onrender.com/",
+                repoLink: "",
+            },
+          {
+                title: "My Portfolio - Deepak's Profile",
+                description: "A React-based app to my profile and skills. Used Bootstrap for responsive UI and dynamic user experience.",
+                tech: ["React", "Bootstrap", "Node.js", "Express"],
+                liveLink: "https://deepakprofile.vercel.app/",
+                repoLink: "https://github.com/DeepakSharma301203/deepakprofile",
+            },
+          {
+                title: "Vidya Mandir School- School Website",
+                description: "A React-based app to view School details and get information. Used Bootstrap for responsive UI and dynamic user experience. Features include apply now, login, student dashboard, and teacher dashboard.",
+                tech: ["React", "Bootstrap", "Node.js", "Express","MongoDB"],
+                liveLink: "#",
+                repoLink: "#",
+            }
+        ],
+        experience: [
+          {
+                role: "Data Science Intern",
+                company: "Personifwy",
+                duration: "Oct 2024 - Dec 2024",
+                points: [
+                    "Analyzed user behavior data to identify trends and optimize web page performance, leading to a 30% improvement in UI consistency.",
+                    "Developed and integrated interactive, data-driven components using React.js to enhance user engagement and system performance.",
+                    "Collaborated with the development team to implement real-time features and debug production-level issues."
+                ]
+            },
+            {
+                role: "Web Developer Intern",
+                company: "Stucare Technologies Pvt. Ltd.",
+                duration: "May 2024 - July 2024",
+                points: [
+                    "Developed fully responsive web pages using HTML, CSS, and JavaScript, improving UI consistency by 30%.",
+                    "Built interactive components using React.js to enhance user engagement and performance.",
+                    "Collaborated with the development team to implement real-time features and debug production-level issues."
+                ]
+            }
+        ],
+        education: [
+            {
+                degree: "Bachelor of Engineering in Computer Science",
+                institution: "Chandigarh University",
+                duration: "Aug 2022 - Present",
+                score: "CGPA: 7.2 (Till 6th Semester)"
+            },
+        ],
+        certifications: [
+            "Web Development with JavaScript - Udemy",
+            "DSA in Java with PW",
+            "MERN Stack (Delta 2.0) - Apna College"
+        ]
+    };
 
-  /* Margins */
-  --mb-0-5: .5rem;
-  --mb-1: 1rem;
-  --mb-1-5: 1.5rem;
-  --mb-2: 2rem;
-  --mb-3: 3rem;
+    const navItems = ['home', 'about', 'skills', 'projects', 'contact'];
 
-  /* Z-index */
-  --z-tooltip: 10;
-  --z-fixed: 100;
+    return (
+        <>
+            <header className={`header ${scrolled ? 'scroll-header' : ''}`}>
+                <nav className="nav container">
+                    <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="nav-logo">
+                        {portfolioData.name}
+                    </a>
+                    <div className={`nav-menu ${isMenuOpen ? 'show-menu' : ''}`}>
+                        <ul className="nav-list">
+                            {navItems.map(item => (
+                                <li key={item} className="nav-item">
+                                    <a 
+                                      href={`#${item}`} 
+                                      onClick={(e) => handleNavClick(e, item)} 
+                                      className={`nav-link capitalize ${activeNav === `#${item}` ? 'active-link' : ''}`}
+                                    >
+                                      {item === 'home' ? 'Home' : item}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="nav-actions">
+                        <button onClick={() => setIsDarkMode(!isDarkMode)} className="theme-button">
+                            {isDarkMode ? <Sun /> : <Moon />}
+                        </button>
+                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="nav-toggle">
+                            {isMenuOpen ? <X /> : <Menu />}
+                        </button>
+                    </div>
+                </nav>
+            </header>
 
-  /* Transitions */
-  --transition-speed: 0.3s ease;
-}
+            <main>
+                <section id="home" className="hero section">
+                    <div className="hero-grid container">
+                        <div className="hero-content">
+                            <h1>Hi, I'm <span className="highlight">{portfolioData.name}</span></h1>
+                            <p className="subtitle">{portfolioData.title}</p>
+                            <p className="summary">{portfolioData.summary}</p>
+                            <div className="social-links">
+                                <a href={portfolioData.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github size={24}/></a>
+                                <a href={portfolioData.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin size={24}/></a>
+                                <a href={portfolioData.leetcode} target="_blank" rel="noopener noreferrer" aria-label="LeetCode"><Code size={24}/></a>
+                                <a href={`mailto:${portfolioData.email}`} aria-label="Email"><Mail size={24}/></a>
+                            </div>
+                            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="button">
+                                Contact Me <Send size={20}/>
+                            </a>
+                        </div>
+                        <div className="hero-image-container">
+                            <img src={portfolioData.profileImage} alt="Deepak Sharma" className="hero-image"/>
+                        </div>
+                    </div>
+                </section>
 
-/* Dark theme variables */
-body.dark-mode {
-  --title-color: hsl(var(--hue), 8%, 95%);
-  --text-color: hsl(var(--hue), 8%, 75%);
-  --body-color: hsl(var(--hue), 28%, 12%);
-  --container-color: hsl(var(--hue), 28%, 16%);
-  --border-color: hsl(var(--hue), 28%, 25%);
-}
+                <section id="about" className="about section">
+                    <div className="container">
+                        <h2 className="section-title">About Me</h2>
+                        <div className="about-details">
+                            <div className="card">
+                                <h3><Briefcase className="card-icon"/> Experience</h3>
+                                {portfolioData.experience.map((exp, index) => (
+                                    <div key={index}>
+                                        <h4>{exp.role} at {exp.company}</h4>
+                                        <p className="duration">{exp.duration}</p>
+                                        <ul>{exp.points.map((point, i) => <li key={i}>{point}</li>)}</ul>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="card">
+                                <h3><GraduationCap className="card-icon"/> Education</h3>
+                                {portfolioData.education.map((edu, index) => (
+                                    <div key={index}>
+                                        <h4>{edu.degree}</h4>
+                                        <p>{edu.institution}</p>
+                                        <p className="duration">{edu.duration} | {edu.score}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="card">
+                                <h3><Award className="card-icon"/> Certifications</h3>
+                                <ul>{portfolioData.certifications.map((cert, i) => <li key={i}>{cert}</li>)}</ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="skills" className="skills section">
+                    <div className="container">
+                        <h2 className="section-title">Technical Skills</h2>
+                        <div className="skills-container">
+                            {portfolioData.skills.map(skill => (
+                                <div key={skill.name} className="skill-item">
+                                    <skill.icon className="skill-icon" size={24} />
+                                    <span>{skill.name}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
-/* ===== Base ===== */
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+                <section id="projects" className="projects section">
+                   <div className="container">
+                        <h2 className="section-title">My Projects</h2>
+                        <div className="projects-grid">
+                            {portfolioData.projects.map(project => (
+                                <div key={project.title} className="project-card card">
+                                    <h3>{project.title}</h3>
+                                    <p>{project.description}</p>
+                                    <div className="tech-tags">
+                                        {project.tech.map(t => <span key={t}>{t}</span>)}
+                                    </div>
+                                    <div className="project-links">
+                                        {project.liveLink && project.liveLink !== "#" && (
+                                            <a href={project.liveLink} target="_blank" rel="noopener noreferrer">Live Demo <ExternalLink size={18}/></a>
+                                        )}
+                                        {project.repoLink && project.repoLink !== "" && (
+                                            <a href={project.repoLink} target="_blank" rel="noopener noreferrer">GitHub <Github size={18}/></a>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
-html {
-  scroll-behavior: smooth;
-}
+                <section id="contact" className="contact section">
+                    <div className="container contact-container">
+                        <h2 className="section-title">Get In Touch</h2>
+                        <p>I'm currently looking for new opportunities. My inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                        <a href={`mailto:${portfolioData.email}`} className="button">
+                           Say Hello <Send size={20}/>
+                        </a>
+                    </div>
+                </section>
+            </main>
 
-body {
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
-  background-color: var(--body-color);
-  color: var(--text-color);
-  line-height: var(--line-height);
-  transition: background-color 0.4s, color 0.4s;
-}
-
-h1, h2, h3, h4 {
-  color: var(--title-color);
-  font-weight: var(--font-semibold);
-}
-
-ul { list-style: none; }
-a { text-decoration: none; }
-img { max-width: 100%; height: auto; }
-button { cursor: pointer; border: none; outline: none; }
-
-/* ===== Reusable CSS Classes ===== */
-.container {
-  max-width: 1024px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--mb-1-5);
-  padding-right: var(--mb-1-5);
-}
-
-.section {
-  padding: 4.5rem 0 2rem;
-}
-
-.section-title {
-  font-size: var(--h1-font-size);
-  text-align: center;
-  margin-bottom: var(--mb-3);
-}
-
-/* ===== Header & Nav ===== */
-.header {
-  width: 100%;
-  background-color: transparent;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--z-fixed);
-  transition: var(--transition-speed);
-}
-/* Glassmorphism effect on scroll */
-.scroll-header {
-  background-color: hsla(var(--hue), 60%, 99%, 0.8);
-  box-shadow: 0 2px 8px hsla(0, 0%, 0%, .1);
-}
-body.dark-mode .scroll-header {
-  background-color: hsla(var(--hue), 28%, 12%, 0.8);
-  box-shadow: 0 2px 8px hsla(0, 0%, 0%, .2);
-}
-@supports (backdrop-filter: blur(10px)) {
-  .scroll-header {
-    backdrop-filter: blur(10px);
-  }
-}
-
-.nav {
-  height: var(--header-height);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-logo {
-  color: var(--title-color);
-  font-weight: var(--font-medium);
-  transition: var(--transition-speed);
-}
-.nav-logo:hover {
-  color: var(--first-color);
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.theme-button, .nav-toggle {
-  background: none;
-  color: var(--title-color);
-  font-size: 1.25rem;
-}
-
-.nav-link {
-  color: var(--title-color);
-  font-weight: var(--font-medium);
-  transition: var(--transition-speed);
-  padding: .5rem;
-  position: relative;
-}
-
-.nav-link:hover, .active-link {
-  color: var(--first-color);
-}
-.active-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background-color: var(--first-color);
-    border-radius: 50%;
-}
-
-
-/* ===== Hero Section ===== */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  align-items: center;
-  background-color: var(--body-color);
-}
-.hero-grid {
-  display: grid;
-  gap: 2rem;
-  align-items: center;
-}
-.hero-content {
-  text-align: center;
-}
-.hero-content h1 {
-  font-size: var(--biggest-font-size);
-  font-weight: var(--font-bold);
-  margin-bottom: var(--mb-0-5);
-}
-.hero-content .highlight {
-  color: var(--first-color);
-}
-.hero-content .subtitle {
-  font-size: var(--h2-font-size);
-  margin-bottom: var(--mb-1);
-  color: var(--text-color);
-}
-.hero-content .summary {
-  max-width: 600px;
-  margin: 0 auto var(--mb-2);
-}
-.hero-image-container {
-  display: flex;
-  justify-content: center;
-  order: -1;
-}
-.hero-image {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 7px solid var(--container-color);
-  box-shadow: 0 8px 24px hsla(var(--hue), 69%, 61%, 0.2);
-}
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: var(--mb-2);
-}
-.social-links a {
-  color: var(--title-color);
-  font-size: 1.5rem;
-  transition: var(--transition-speed);
-}
-.social-links a:hover {
-  color: var(--first-color);
-  transform: translateY(-3px);
-}
-.button {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  background-color: var(--first-color);
-  color: #fff;
-  padding: 1rem 1.5rem;
-  border-radius: .5rem;
-  font-weight: var(--font-medium);
-  transition: var(--transition-speed);
-  box-shadow: 0 4px 12px hsla(var(--hue), 69%, 61%, 0.4);
-}
-.button:hover {
-  background-color: var(--first-color-alt);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px hsla(var(--hue), 69%, 61%, 0.5);
-}
-
-/* ===== About, Projects, etc. Cards ===== */
-.card {
-  background-color: var(--body-color);
-  border: 1px solid var(--border-color);
-  padding: 1.5rem;
-  border-radius: .75rem;
-  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-}
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px hsla(var(--hue), 30%, 15%, 0.1);
-}
-body.dark-mode .card:hover {
-  box-shadow: 0 10px 25px hsla(var(--hue), 30%, 4%, 0.2);
-}
-.card h3 {
-  font-size: var(--h3-font-size);
-  margin-bottom: var(--mb-1);
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-}
-.card-icon { color: var(--first-color); }
-.card ul { list-style-position: inside; list-style-type: '— '; padding-left: .5rem; }
-.card ul li { margin-bottom: var(--mb-0-5); }
-.card .duration {
-  font-size: var(--small-font-size);
-  color: var(--text-color-light);
-  margin-bottom: var(--mb-0-5);
-}
-
-/* ===== About Section ===== */
-.about { background-color: var(--container-color); }
-.about-details {
-    display: grid;
-    gap: 1.5rem;
-}
-.about-details .card > div:not(:last-child) { margin-bottom: var(--mb-1-5); }
-
-/* ===== Skills Section ===== */
-.skills { background-color: var(--body-color); }
-.skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-.skill-item {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  background-color: var(--container-color);
-  padding: .75rem 1.25rem;
-  border-radius: .5rem;
-  border: 1px solid var(--border-color);
-  font-weight: var(--font-medium);
-  transition: transform var(--transition-speed);
-}
-.skill-item:hover {
-  transform: scale(1.05);
-  color: var(--first-color);
-}
-.skill-icon { color: var(--first-color); }
-
-/* ===== Projects Section ===== */
-.projects { background-color: var(--container-color); }
-.projects-grid {
-  display: grid;
-  gap: 1.5rem;
-}
-.project-card h3 { font-size: var(--h3-font-size); margin-bottom: var(--mb-0-5); }
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  margin: var(--mb-1) 0;
-}
-.tech-tags span {
-  background-color: hsl(var(--hue), 60%, 94%);
-  color: var(--first-color);
-  padding: .25rem .6rem;
-  border-radius: .25rem;
-  font-size: var(--small-font-size);
-  font-weight: var(--font-medium);
-}
-body.dark-mode .tech-tags span {
-  background-color: hsl(var(--hue), 28%, 25%);
-  color: hsl(var(--hue), 8%, 80%);
-}
-.project-links {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: var(--mb-1-5);
-}
-.project-links a {
-  color: var(--first-color);
-  font-weight: var(--font-medium);
-  display: inline-flex;
-  align-items: center;
-  gap: .35rem;
-  transition: var(--transition-speed);
-}
-.project-links a:hover {
-    transform: translateY(-2px);
-    text-decoration: underline;
-}
-
-/* ===== Contact Section ===== */
-.contact { background-color: var(--body-color); }
-.contact-container {
-    text-align: center;
-}
-.contact-container p {
-  margin-bottom: var(--mb-2);
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ===== Footer ===== */
-.footer {
-  padding: 3rem 0;
-  text-align: center;
-  font-size: var(--small-font-size);
-  color: var(--text-color-light);
-  background-color: var(--container-color);
-  border-top: 1px solid var(--border-color);
-}
-
-/* ===== Mobile Nav Menu ===== */
-@media screen and (max-width: 767px) {
-  .nav-menu {
-    position: fixed;
-    background-color: var(--body-color);
-    width: 80%;
-    height: 100%;
-    top: 0;
-    right: -100%;
-    padding: 6rem 2rem 4rem;
-    transition: .4s;
-    box-shadow: -4px 0 12px hsla(0, 0%, 0%, .1);
-    z-index: var(--z-fixed);
-  }
-  .show-menu {
-    right: 0;
-  }
-  .nav-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-}
-
-/* ===== Media Queries for larger devices ===== */
-@media screen and (min-width: 768px) {
-  .section {
-    padding: 6rem 0 2rem;
-  }
-  .nav {
-    height: calc(var(--header-height) + 1.5rem);
-  }
-  .nav-toggle {
-    display: none;
-  }
-  .nav-list {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2.5rem;
-  }
-  .active-link::after { bottom: -10px; }
-  .hero-grid {
-    grid-template-columns: 1fr 300px;
-    align-items: center;
-    text-align: left;
-  }
-  .hero-content {
-    text-align: left;
-  }
-  .hero-content .summary {
-    margin-left: 0;
-  }
-  .social-links {
-    justify-content: flex-start;
-  }
-  .hero-image-container {
-    order: 1;
-  }
-  .hero-image {
-    width: 300px;
-    height: 300px;
-  }
-  .about-details {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (min-width: 992px) {
-    .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    :root {
-        --biggest-font-size: 3.5rem;
-        --h1-font-size: 2rem;
-        --h2-font-size: 1.5rem;
-        --h3-font-size: 1.25rem;
-        --normal-font-size: 1rem;
-        --small-font-size: .875rem;
-    }
-    .hero-grid {
-        grid-template-columns: 2fr 1fr;
-    }
-    .about-details {
-        grid-template-columns: repeat(3, 1fr);
-    }
+            <footer className="footer">
+                <p>Designed & Built by Deepak Sharma &copy; {new Date().getFullYear()}</p>
+            </footer>
+        </>
+    );
 }
