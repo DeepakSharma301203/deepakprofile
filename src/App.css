@@ -145,6 +145,13 @@ body.dark-mode .scroll-header {
   color: var(--first-color);
 }
 
+/* This new rule groups the nav links and buttons */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
